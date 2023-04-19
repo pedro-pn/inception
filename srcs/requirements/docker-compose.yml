@@ -1,0 +1,49 @@
+version: '3.9'
+
+services:
+  nginx:
+    container_name: nginx
+    build:
+      context: ./nginx
+      dockerfile: Dockerfile
+    ports:
+      - 443:443
+    volumes:
+      - wordpressdb:/var/www
+    depends_on:
+      - wordpress
+    networks:
+      - network
+  # mariadb:
+  #   container_name: mariadb
+  #   build:
+  #     context: ./MariaDB
+  #     dockerfile: Dockerfile
+  #   volumes:
+  #     - MariaDBvol:/var/lib/mysql
+  wordpress:
+    container_name: wordpress
+    build:
+      context: ./wordpress
+      dockerfile: Dockerfile
+    volumes:
+      - wordpressdb:/var/www
+    networks:
+      - network
+
+volumes:
+  wordpressdb:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: '/home/pedro/Desktop/data/'
+  # MariaDBvol:
+  #   driver: local
+  #   driver_opts:
+  #     type: none
+  #     o: bind
+  #     device: '/home/pedro/Desktop/'
+networks:
+  network:
+    driver: bridge
