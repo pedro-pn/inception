@@ -1,11 +1,7 @@
 FROM debian:latest
 
 RUN apt-get update -y && apt-get upgrade -y && \
-	apt install php-fpm wget php php-cgi php-mysql php-mysql \
-    php-gd \
-    php-curl \
-    php-xml -y && \
-	apt remove apache2
+	apt install php-fpm wget php php-mysql -y
 
 RUN wget https://wordpress.org/latest.tar.gz && \
 	tar -xvzf latest.tar.gz

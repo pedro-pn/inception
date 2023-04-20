@@ -9,41 +9,49 @@ services:
     ports:
       - 443:443
     volumes:
-      - wordpressdb:/var/www
+      - wordpressvol:/var/www
     depends_on:
       - wordpress
     networks:
       - network
-  # mariadb:
-  #   container_name: mariadb
-  #   build:
-  #     context: ./MariaDB
-  #     dockerfile: Dockerfile
-  #   volumes:
-  #     - MariaDBvol:/var/lib/mysql
+
   wordpress:
     container_name: wordpress
     build:
       context: ./wordpress
       dockerfile: Dockerfile
     volumes:
-      - wordpressdb:/var/www
+      - wordpressvol:/var/www
+    networks:
+      - network
+    depends_on:
+      - mariadb
+
+  mariadb:
+    container_name: mariadb
+    build:
+      context: ./MariaDB
+      dockerfile: Dockerfile
+    volumes:
+      - MariaDBvol:/var/lib/mysql
     networks:
       - network
 
 volumes:
-  wordpressdb:
+  wordpressvol:
     driver: local
     driver_opts:
       type: none
       o: bind
-      device: '/home/pedro/Desktop/data/'
-  # MariaDBvol:
-  #   driver: local
-  #   driver_opts:
-  #     type: none
-  #     o: bind
-  #     device: '/home/pedro/Desktop/'
+      device: '/home/pedro/Desktop/data/wordpress'
+
+  MariaDBvol:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: '/home/pedro/Desktop/data/mysql'
+
 networks:
   network:
     driver: bridge
