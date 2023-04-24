@@ -14,6 +14,7 @@ services:
       - wordpress
     networks:
       - network
+    restart: always
 
   wordpress:
     container_name: wordpress
@@ -26,6 +27,7 @@ services:
       - network
     depends_on:
       - mariadb
+    restart: always
 
   mariadb:
     container_name: mariadb
@@ -36,6 +38,7 @@ services:
       - MariaDBvol:/var/lib/mysql
     networks:
       - network
+    restart: always
 
 volumes:
   wordpressvol:
