@@ -3,14 +3,14 @@
 if [ ! -d /var/lib/mysql/wordpressdb ]; then
 	mysql_install_db
 	/etc/init.d/mysql start
-	mysql -u root -e "CREATE DATABASE wordpressdb;
-	CREATE USER 'ppaulo-d'@'%' IDENTIFIED BY 'teste';
-	CREATE USER 'user42'@'%' IDENTIFIED BY '123';
-	GRANT SELECT, INSERT, UPDATE, DELETE ON wordpressdb.* TO 'user42'@'%' IDENTIFIED BY '123';
-	GRANT ALL PRIVILEGES ON wordpressdb.* TO 'ppaulo-d'@'%' IDENTIFIED BY 'teste' WITH GRANT OPTION;
+	mysql -u root -e "CREATE DATABASE ${MYSQL_DATABASE};
+	CREATE USER '${MYSQL_USER}'@'%' IDENTIFIED BY '${MYSQL_PASSWORD}';
+	CREATE USER '${MYSQL_USER2}'@'%' IDENTIFIED BY '${MYSQL_PASSWORD2}';
+	GRANT SELECT, INSERT, UPDATE, DELETE ON ${MYSQL_DATABASE}.* TO '${MYSQL_USER2}'@'%' IDENTIFIED BY '${MYSQL_PASSWORD2}';
+	GRANT ALL PRIVILEGES ON ${MYSQL_DATABASE}.* TO '${MYSQL_USER}'@'%' IDENTIFIED BY '${MYSQL_PASSWORD}' WITH GRANT OPTION;
 	FLUSH PRIVILEGES;
 	EXIT"
-	mysql -uppaulo-d -pteste wordpressdb < /db.sql
+	mysql -u${MYSQL_USER} -p${MYSQL_PASSWORD} ${MYSQL_DATABASE} < /db.sql
 fi
 
 exec "$@"

@@ -27,6 +27,8 @@ services:
       - network
     depends_on:
       - mariadb
+    env_file:
+      - .env
     restart: on-failure
 
   mariadb:
@@ -39,6 +41,8 @@ services:
     networks:
       - network
     restart: on-failure
+    env_file:
+      - .env
 
 volumes:
   wordpressvol:

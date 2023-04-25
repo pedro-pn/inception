@@ -7,7 +7,9 @@ RUN wget https://wordpress.org/latest.tar.gz && \
 	tar -xvzf latest.tar.gz
 
 COPY ./conf/www.conf /etc/php/7.3/fpm/pool.d/
-COPY ./conf/wp-config.php wordpress/
+COPY ./tools/wordpress-entrypoint.sh /usr/local/bin
+
+RUN chmod +x /usr/local/bin/wordpress-entrypoint.sh
 
 RUN mkdir -p /var/www/
 RUN mv wordpress/* /var/www/
@@ -17,5 +19,7 @@ RUN chown -R www-data:www-data /var/www/ \
 	&& chmod -R 777 /var/www/
 
 EXPOSE 9000
+
+ENTRYPOINT ["wordpress-entrypoint.sh"]
 
 CMD ["/usr/sbin/php-fpm7.3", "-F"]
