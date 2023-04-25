@@ -13,8 +13,8 @@ RUN mkdir -p /var/run/mysqld && chown -R mysql:mysql /var/run/mysqld && chmod 77
 
 RUN chmod 777 /usr/local/bin/script.sh
 
-RUN script.sh
-
 EXPOSE 3306
+
+ENTRYPOINT ["script.sh"]
 
 CMD ["mysqld", "--bind-address=0.0.0.0"]
