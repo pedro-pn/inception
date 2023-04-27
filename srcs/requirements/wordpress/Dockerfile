@@ -1,7 +1,7 @@
 FROM debian:buster
 
 RUN apt-get update -y && apt-get upgrade -y && \
-	apt install php-fpm wget php php-mysql unzip -y
+	apt install php-fpm wget php php-mysql unzip php-redis -y
 
 RUN wget https://wordpress.org/latest.tar.gz && \
 	tar -xvzf latest.tar.gz

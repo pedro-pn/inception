@@ -20,10 +20,14 @@ sed -i '39i\'$'\n' $config_file
 sed -i '39i\'$'\n' $config_file
 sed -i '40i /** Redis configuration **/' $config_file
 sed -i "41i define( 'WP_REDIS_HOST', 'redis' );" $config_file
-sed -i "42i define( 'WP_REDIS_PORT', 6379 );" $config_file
+sed -i "42i define( 'WP_REDIS_PORT', '6379' );" $config_file
 sed -i "43i define( 'WP_REDIS_PREFIX', 'inception' );" $config_file
-sed -i "43i define( 'WP_REDIS_DATABASE', 0 );" $config_file
+sed -i "43i define( 'WP_REDIS_DATABASE', 1 );" $config_file
 sed -i "43i define( 'WP_REDIS_TIMEOUT', 1 );" $config_file
 sed -i "43i define( 'WP_REDIS_READ_TIMEOUT', 1 );" $config_file
+sed -i "68i define('WP_CACHE', true);" $config_file
+sed -i "69i define('WP_CACHE_KEY_SALT', 'wordpress_redis');" $config_file
+
+wp redis enable --allow-root
 
 exec "$@"

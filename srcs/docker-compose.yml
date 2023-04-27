@@ -43,6 +43,17 @@ services:
     restart: on-failure
     env_file:
       - .env
+ 
+  redis:
+    container_name: redis
+    build:
+      context: ./bonus/redis
+      dockerfile: Dockerfile
+    volumes:
+      - redisVol:/var/lib/redis
+    networks:
+      - network
+    restart: on-failure
 
 volumes:
   wordpressvol:
@@ -58,6 +69,13 @@ volumes:
       type: none
       o: bind
       device: '/home/pedro/Desktop/data/mysql'
+  
+  redisVol:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: '/home/pedro/Desktop/data/redis'
 
 networks:
   network:
