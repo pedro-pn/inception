@@ -55,6 +55,21 @@ services:
       - network
     restart: on-failure
 
+  vsftp:
+    container_name: ftp
+    build:
+      context: ./bonus/vsftpd
+      dockerfile: Dockerfile
+    networks:
+      - network
+    ports:
+      - 20-21:20-21
+    volumes:
+      - wordpressvol:/home/ppaulo-d
+    env_file:
+      - .env
+    restart: on-failure
+
 volumes:
   wordpressvol:
     driver: local
