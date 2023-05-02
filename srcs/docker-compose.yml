@@ -9,7 +9,7 @@ services:
     ports:
       - 443:443
     volumes:
-      - wordpressvol:/var/www
+      - wordpressvol:/var/www/wordpress
     depends_on:
       - wordpress
     networks:
@@ -22,28 +22,16 @@ services:
       context: ./requirements/wordpress
       dockerfile: Dockerfile
     volumes:
-      - wordpressvol:/var/www
+      - wordpressvol:/var/www/wordpress
     networks:
       - network
     depends_on:
       - mariadb
+      - redis
     env_file:
       - .env
     restart: on-failure
 
-  mariadb:
-    container_name: mariadb
-    build:
-      context: ./requirements/MariaDB
-      dockerfile: Dockerfile
-    volumes:
-      - MariaDBvol:/var/lib/mysql
-    networks:
-      - network
-    restart: on-failure
-    env_file:
-      - .env
- 
   redis:
     container_name: redis
     build:
@@ -69,6 +57,19 @@ services:
     env_file:
       - .env
     restart: on-failure
+
+  mariadb:
+    container_name: mariadb
+    build:
+      context: ./requirements/MariaDB
+      dockerfile: Dockerfile
+    volumes:
+      - MariaDBvol:/var/lib/mysql
+    networks:
+      - network
+    restart: on-failure
+    env_file:
+      - .env
 
 volumes:
   wordpressvol:

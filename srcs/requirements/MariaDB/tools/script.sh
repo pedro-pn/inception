@@ -19,6 +19,7 @@ if [ ! -d /var/lib/mysql/wordpressdb ]; then
 	FLUSH PRIVILEGES;
 	EXIT"
 	mysql -u${MYSQL_USER} -p${MYSQL_PASSWORD} ${MYSQL_DATABASE} < /db.sql
+	/etc/init.d/mysql stop
 fi
 
 exec "$@"

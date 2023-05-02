@@ -1,11 +1,11 @@
 #!/bin/bash
 
 set -xe
-config_file=/var/www/wp-config.php
+config_file=/var/www/wordpress/wp-config.php
 
 # requirements
-if [ ! -f /var/www/wp-config.php ]; then
-	cp /var/www/wp-config-sample.php $config_file
+if [ ! -f /var/www/wordpress/wp-config.php ]; then
+	cp /var/www/wordpress/wp-config-sample.php $config_file
 	sed -i "s/database_name_here/$MYSQL_DATABASE/g" $config_file
 	sed -i "s/username_here/$MYSQL_USER/g" $config_file
 	sed -i "s/password_here/$MYSQL_PASSWORD/g" $config_file
