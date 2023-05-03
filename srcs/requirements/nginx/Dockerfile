@@ -12,6 +12,14 @@ RUN openssl req -new -newkey rsa:2048 -x509 -sha256 -days 365 -nodes -keyout /et
 
 COPY ./conf/nginx.conf /etc/nginx/conf.d/default.conf
 
+COPY ./tools/index.html .
+COPY ./tools/nino.jpeg .
+COPY ./tools/nginx-entrypoint.sh /usr/local/bin
+
+RUN chmod +x /usr/local/bin/nginx-entrypoint.sh
+
 EXPOSE 443
+
+ENTRYPOINT [ "nginx-entrypoint.sh" ]
 
 CMD ["nginx", "-g", "daemon off;"]

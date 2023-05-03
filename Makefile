@@ -7,7 +7,7 @@ all: build
 
 reset:
 	sudo rm -rf /home/pedro/Desktop/data/*
-	mkdir /home/pedro/Desktop/data/wordpress
+	mkdir /home/pedro/Desktop/data/www
 	mkdir /home/pedro/Desktop/data/mysql
 	mkdir /home/pedro/Desktop/data/redis
 

@@ -9,7 +9,7 @@ services:
     ports:
       - 443:443
     volumes:
-      - wordpressvol:/var/www/wordpress
+      - wordpressvol:/var/www/
     depends_on:
       - wordpress
     networks:
@@ -22,7 +22,7 @@ services:
       context: ./requirements/wordpress
       dockerfile: Dockerfile
     volumes:
-      - wordpressvol:/var/www/wordpress
+      - wordpressvol:/var/www/
     networks:
       - network
     depends_on:
@@ -77,7 +77,7 @@ volumes:
     driver_opts:
       type: none
       o: bind
-      device: '/home/pedro/Desktop/data/wordpress'
+      device: '/home/pedro/Desktop/data/www'
 
   MariaDBvol:
     driver: local
