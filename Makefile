@@ -10,6 +10,7 @@ reset:
 	mkdir /home/pedro/Desktop/data/www
 	mkdir /home/pedro/Desktop/data/mysql
 	mkdir /home/pedro/Desktop/data/redis
+	mkdir /home/pedro/Desktop/data/monitoring
 
 down:
 	docker-compose -f ${DOCKER_SRCS} down -v

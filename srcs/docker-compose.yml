@@ -80,6 +80,15 @@ services:
       - network
     restart: on-failure
 
+  monitoring:
+    container_name: monitoring
+    build:
+      context: ./bonus/monitoring
+      dockerfile: Dockerfile
+    restart: on-failure
+    volumes:
+      - monitoringVol:/moni
+
 volumes:
   wordpressvol:
     driver: local
@@ -101,6 +110,13 @@ volumes:
       type: none
       o: bind
       device: '/home/pedro/Desktop/data/redis'
+
+  monitoringVol:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: '/home/pedro/Desktop/data/monitoring'
 
 networks:
   network:
