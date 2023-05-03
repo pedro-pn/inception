@@ -71,6 +71,15 @@ services:
     env_file:
       - .env
 
+  adminer:
+    container_name: adminer
+    build:
+      context: ./bonus/adminer
+      dockerfile: Dockerfile
+    networks:
+      - network
+    restart: on-failure
+
 volumes:
   wordpressvol:
     driver: local
