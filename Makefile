@@ -13,14 +13,14 @@ host:
 	cat /etc/hosts | grep ppaulo-d.42.fr || sudo sh -c 'echo "127.0.0.1 ppaulo-d.42.fr" >> /etc/hosts'
 
 dirs:
-	sudo mkdir -p ${INCEPTION_DIR}/inception/www
-	sudo mkdir -p ${INCEPTION_DIR}/inception/mysql
-	sudo mkdir -p ${INCEPTION_DIR}/inception/redis
-	sudo mkdir -p ${INCEPTION_DIR}/inception/monitoring
+	sudo mkdir -p ${INCEPTION_DIR}/data/www
+	sudo mkdir -p ${INCEPTION_DIR}/data/mysql
+	sudo mkdir -p ${INCEPTION_DIR}/data/redis
+	sudo mkdir -p ${INCEPTION_DIR}/data/monitoring
 
 
 clean: down
-	@ sudo rm -rf ${INCEPTION_DIR}/inception/*
+	@ sudo rm -rf ${INCEPTION_DIR}/*
 
 reset: clean dirs
 

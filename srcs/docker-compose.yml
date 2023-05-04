@@ -95,28 +95,28 @@ volumes:
     driver_opts:
       type: none
       o: bind
-      device: "${INCEPTION_DIR}/inception/www"
+      device: "${INCEPTION_DIR}/data/www"
 
   MariaDBvol:
     driver: local
     driver_opts:
       type: none
       o: bind
-      device: "${INCEPTION_DIR}/inception/mysql"
+      device: "${INCEPTION_DIR}/data/mysql"
   
   redisVol:
     driver: local
     driver_opts:
       type: none
       o: bind
-      device: "${INCEPTION_DIR}/inception/redis"
+      device: "${INCEPTION_DIR}/data/redis"
 
   monitoringVol:
     driver: local
     driver_opts:
       type: none
       o: bind
-      device: "${INCEPTION_DIR}/inception/monitoring"
+      device: "${INCEPTION_DIR}/data/monitoring"
 
 networks:
   network:
