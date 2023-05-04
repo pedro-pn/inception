@@ -35,7 +35,7 @@ services:
   redis:
     container_name: redis
     build:
-      context: ./bonus/redis
+      context: ./requirements/bonus/redis
       dockerfile: Dockerfile
     volumes:
       - redisVol:/var/lib/redis
@@ -46,7 +46,7 @@ services:
   vsftp:
     container_name: ftp
     build:
-      context: ./bonus/vsftpd
+      context: ./requirements/bonus/vsftpd
       dockerfile: Dockerfile
     networks:
       - network
@@ -74,7 +74,7 @@ services:
   adminer:
     container_name: adminer
     build:
-      context: ./bonus/adminer
+      context: ./requirements/bonus/adminer
       dockerfile: Dockerfile
     networks:
       - network
@@ -83,7 +83,7 @@ services:
   monitoring:
     container_name: monitoring
     build:
-      context: ./bonus/monitoring
+      context: ./requirements/bonus/monitoring
       dockerfile: Dockerfile
     restart: on-failure
     volumes:
