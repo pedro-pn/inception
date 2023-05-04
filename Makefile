@@ -28,8 +28,8 @@ down:
 	docker-compose -f ${DOCKER_SRCS} down -v
 
 prune:
-	docker system prune -a
-	docker volume rm $(docker volume ls -q)
+	@ docker system prune -a
+	@ docker volume rm $$(docker volume ls -q) 2> /dev/null || true
 
 re: down reset all
 
