@@ -7,9 +7,10 @@ COPY ./conf/db.sql .
 
 COPY ./tools/script.sh /usr/local/bin
 
-RUN mkdir -p /var/run/mysqld && chown -R mysql:mysql /var/run/mysqld && chmod 777 /var/run/mysqld
-
-RUN chmod 777 /usr/local/bin/script.sh
+RUN mkdir -p /var/run/mysqld; \
+	chown -R mysql:mysql /var/run/mysqld; \
+	chmod 777 /var/run/mysqld; \
+	chmod 777 /usr/local/bin/script.sh
 
 EXPOSE 3306
 

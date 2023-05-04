@@ -1,6 +1,8 @@
 #!/bin/bash
 
+# set (-x) bash cript to debbug mode. (-e) Exit if any command fails.
 set -xe
+
 config_file=/var/www/wordpress/wp-config.php
 
 # requirements
