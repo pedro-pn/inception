@@ -53,7 +53,7 @@ services:
     ports:
       - 20-21:20-21
     volumes:
-      - wordpressvol:/home/ppaulo-d
+      - wordpressvol:/home/${FTP_USER}
     env_file:
       - .env
     restart: on-failure

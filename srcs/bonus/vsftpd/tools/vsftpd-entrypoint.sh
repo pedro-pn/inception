@@ -25,7 +25,7 @@ echo "userlist_deny=NO" >> /etc/vsftpd.conf
 echo "allow_writeable_chroot=YES" >> /etc/vsftpd.conf
 
 # Adds an user to the FTP server an creates its home directory
-adduser --home /home/${FTP_USER} --disabled-password --gecos "${FTP_NAME}" ${FTP_USER}
+adduser --no-create-home --disabled-password --gecos "${FTP_NAME}" ${FTP_USER}
 
 # Sets user's password
 echo "${FTP_USER}:${FTP_PASSWD}" | chpasswd
